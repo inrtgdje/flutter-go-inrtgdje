@@ -94,6 +94,7 @@ class _ListRefreshState extends State<ListRefresh> {
 // 下拉加载的事件，清空之前list内容，取前X个
 // 其实就是列表重置
   Future<Null> _handleRefresh() async {
+    _pageIndex = 0;
     List newEntries = await mokeHttpRequest();
     if (this.mounted) {
       setState(() {

@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 /// Created with Android Studio.
 /// User: 三帆
 /// Date: 16/01/2019
@@ -24,6 +26,7 @@ import 'package:flutter_go/resources/widget_name_to_icon.dart';
 
 const int ThemeColor = 0xFFC91B3A;
 
+
 class AppPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -34,6 +37,7 @@ class AppPage extends StatefulWidget {
 class _MyHomePageState extends State<AppPage>
     with SingleTickerProviderStateMixin {
   SpUtil sp;
+  final Size size = window.physicalSize;
   WidgetControlModel widgetControl = new WidgetControlModel();
   SearchHistoryList searchHistoryList;
   TabController controller;
@@ -120,7 +124,8 @@ class _MyHomePageState extends State<AppPage>
   @override
   Widget build(BuildContext context) {
     var db = Provider.db;
-
+    final size = MediaQuery.of(context).size;
+    final fontSize = size.width <= 375?12.0:17.0;
     return new Scaffold(
       appBar: new AppBar(title: buildSearchInput(context)),
       body: new TabBarView(controller: controller, children: <Widget>[
@@ -152,6 +157,7 @@ class _MyHomePageState extends State<AppPage>
                 // labelColor: const Color(0xFF000000),
                 indicatorWeight: 3.0,
                 labelColor: Theme.of(context).primaryColor,
+                labelStyle: TextStyle(fontSize: fontSize),
                 unselectedLabelColor: const Color(0xFF8E8E8E),
                 tabs: myTabs),
           ),
